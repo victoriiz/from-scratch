@@ -4,6 +4,8 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
+import matplotlib.pyplot as plt
+
 
 def train_one_epoch(model, train_loader, loss_fn, optimizer):
     model.train()
@@ -32,6 +34,24 @@ def evaluate(model, data_loader, loss_fn):
 
     return total_loss / total_examples
 
+def plot_losses(train_losses, val_losses, baseline_mse):
+    epochs = range(1, len(train_losses) + 1)
+
+    plt.plot(epochs, train_losses, label="Training MSE")
+    plt.plot(epochs, val_losses, label="Validation MSE")
+    plt.axhline(
+        baseline_mse,
+        color="gray",
+        linestyle="--",
+        label="Mean-predictor baseline"
+    )
+
+    plt.xlabel("Epoch")
+    plt.ylabel("MSE")
+    plt.title("Regression learning curves")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 
 def main():
     torch.manual_seed(0)
