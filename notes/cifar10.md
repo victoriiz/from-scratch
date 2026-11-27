@@ -1,10 +1,5 @@
 # CIFAR-10 Project Notes
 
-## Experiment log
-
-For each run, record the question before training and the interpretation afterward.
-Keep the data split and evaluation procedure fixed when comparing models.
-
 ### Run 001 — SmallCNN baseline
 
 **Question:** Can a two-block CNN learn useful features for CIFAR-10 classification?
